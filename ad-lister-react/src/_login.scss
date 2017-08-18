@@ -1,0 +1,39 @@
+#login{
+    width: 50%;
+    display: none;
+    z-index: 2;
+}
+#register{
+    width: 50%;
+    display: none;
+}
+.login-container {
+    box-shadow: 0 0 25px 0 black;
+    position: absolute;
+    left: 25vw;
+    z-index: 5;
+    width: 50%;
+    margin: 0 auto;
+    height: 500px;
+    background-color: white;
+
+    .form-container {
+        h1 {
+            padding-top: 5%;
+            text-align: center;
+        }
+        margin: 0 auto;
+        width: 95%;
+    }
+}
+.close-button{
+    position: relative;
+}
+
+@media screen and (max-width: 768px){
+.login-container{
+        left: 0;
+        width: 100%;
+        margin: 0;
+    }
+}
