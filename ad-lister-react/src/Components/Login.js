@@ -29,13 +29,27 @@ class Login extends Component {
                 <div className='login-container'>
                     <div className='form-container'>
                         <h1>Login:</h1>
-                        <form>
+                        <form method='POST'>
                             <div className='form-group input-group-lg'>
-                                <input className='form-control' type='text' placeholder='Username' />
-                                <input className='form-control' type='password' placeholder='Password' />
+                                <input id ='username'className='form-control' type='text' name='username'placeholder='Username'  />
+                                <input id='password'className='form-control' type='password' name='password' placeholder='Password' />
                                 <button
-
-                                className='form-control btn btn-primary' 
+                                onClick = {
+                                    (e)=>{
+                                        e.preventDefault();
+                                        let user = $('#username').val();
+                                        let pass = $('#password').val();
+                                        axios.post('api/login',{
+                                            params:{
+                                                username: user,
+                                                password: pass
+                                            }
+                                        }).then((results)=>{
+                                            console.log(results);
+                                        })
+                                    }
+                                }
+                                className='form-control btn btn-primary'
                                 type='submit'>Login</button>
                             </div>
                         </form>

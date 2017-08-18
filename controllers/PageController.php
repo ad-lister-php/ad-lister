@@ -4,7 +4,7 @@ require_once __DIR__ . '/../utils/helper_functions.php';
 
 function pageController()
 {
-
+    session_start();
     // defines array to be returned and extracted for view
     $data = [];
 
@@ -17,6 +17,10 @@ function pageController()
         case '/api/check':
             header('Content-Type: application/json');
             echo json_encode(['key' => 'value']);
+            die();
+        case '/api/login':
+            header('Content-Type: application/json');
+            require '../views/users/login.php';
             die();
         default:    // displays 404 if route not specified above
             $mainView = '../views/home.php';
