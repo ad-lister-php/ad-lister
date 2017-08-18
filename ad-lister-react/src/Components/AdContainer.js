@@ -26,6 +26,7 @@ const adsArr = [
 
 const AdContainer = (props) => {
 
+    let sectionTitle = '';
 
     const Ads = adsArr.map((ad) => {
         console.log(ad)
@@ -37,9 +38,14 @@ const AdContainer = (props) => {
             />
         )
     })
+    if (!props.username) {
+        sectionTitle = 'Public'
+    } else {
+        sectionTitle = props.username;
+    }
     return (
         <div className='ad-container container-fluid'>
-            <h1 className='ad-section-title'>{props.username} Ads</h1>
+            <h1 className='ad-section-title'>{sectionTitle} Listings</h1>
             <div>{Ads}</div>
         </div>
 

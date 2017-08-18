@@ -4,7 +4,7 @@ import $ from 'jquery';
 import Login from './Login';
 import Register from './Register';
 
-const loggedIn = false;
+const loggedIn = true;
 const Header = () => {
     if (!loggedIn){
     return (
@@ -74,9 +74,6 @@ return (
                         </button>
                     </div>
                 <div id='navbar-container' className='collapse navbar-collapse'>
-                    <div className='navbar-left'>
-                        <NavLink className='navbar-left btn btn-primary navbar-btn' to='/' exact activeClassName='active'>Home</NavLink>
-                    </div>
                     <div>
 {/*=============Search form================*/}
                         <form className="navbar-form navbar-right">
@@ -87,6 +84,9 @@ return (
                                 </span>
                             </div>
                         </form>
+                    </div>
+                    <div className='navbar-left'>
+                        <NavLink className='navbar-left btn btn-primary navbar-btn' to='/' exact activeClassName='active'>Home</NavLink>
                     </div>
                     <div className='navbar-right'>
                         <p
