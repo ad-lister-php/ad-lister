@@ -7,7 +7,7 @@ $dbc->exec("DROP TABLE IF EXISTS users_ads");
 
 $query = "CREATE TABLE users_ads (
 		id INT UNSIGNED NOT NULL AUTO_INCREMENT,
-		seller INT UNSIGNED,
+		seller VARCHAR(128),
 		title VARCHAR(128),
 		price INT UNSIGNED,
 		description TEXT,
@@ -15,7 +15,7 @@ $query = "CREATE TABLE users_ads (
 		date_posted VARCHAR(128),
 		location VARCHAR(128),
 		PRIMARY KEY (id),
-		FOREIGN KEY (seller) REFERENCES users (id)
+		FOREIGN KEY (seller) REFERENCES users (username)
 		)";
 
 $dbc->exec($query);
