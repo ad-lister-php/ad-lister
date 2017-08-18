@@ -1,11 +1,14 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import $ from 'jquery';
+import Login from './Login';
+import Register from './Register';
 
-const loggedIn = true;
+const loggedIn = false;
 const Header = () => {
     if (!loggedIn){
     return (
+        <div>
         <nav className='navbar navbar-default'>
             <div className='container-fluid'>
                     <div className='navbar-header'>
@@ -41,27 +44,13 @@ const Header = () => {
                         </form>
                     </div>
                     <div className='navbar-right'>
-                        <p
-                        onClick={
-                            () => {
-                                $('#login').fadeOut(1);
-                                $('#register').fadeIn(300);
-                            }
-                        } 
-                        className='navbar-text'>Register</p>
-                        <p 
-                        onClick={
-                            () => {
-                                $('#register').fadeOut(1);
-                                $('#login').fadeIn(300);
-                            }
-                        }
-                        className='navbar-text'>Login</p>
+                        <NavLink className='navbar-text' to='/users/register' exact activeClassName='active'><p>Register</p></NavLink>
+                        <NavLink className='navbar-text' to='/users/login' exact activeClassName='active'><p>Login</p></NavLink>
                     </div>
                 </div>
             </div>
         </nav>
-
+        </div>
         );
     } else {
 return (

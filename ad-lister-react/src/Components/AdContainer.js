@@ -13,7 +13,7 @@ const adsArr = [
         desc: 'How did this grand piano get in my apartment?'
     },
     {
-        name: 'keyboard',
+        name: 'best-keyboard',
         img: 'PLACEHOLDER-img',
         desc: 'How did this grand piano get in my apartment?'
     },

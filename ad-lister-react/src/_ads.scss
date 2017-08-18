@@ -1,8 +1,11 @@
 .ad {
     background-color: #FFF;
+
 }
 .ad-container{
     width: 95%;
+    position: relative;
+    z-index: 0;
 }
 .ad-section-title {
     color: #FFF;
