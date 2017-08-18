@@ -4,7 +4,7 @@ import $ from 'jquery';
 import Login from './Login';
 import Register from './Register';
 
-const loggedIn = true;
+const loggedIn = false;
 const Header = () => {
     if (!loggedIn){
     return (
@@ -13,15 +13,15 @@ const Header = () => {
             <div className='container-fluid'>
                     <div className='navbar-header'>
                         <p className='navbar-brand'>Ad-Lister</p>
-                        <button 
+                        <button
                         onClick={
                             ()=>{
                                 $('#navbar-container').slideToggle(200);
                             }
                         }
-                        type="button" 
-                        className="navbar-toggle" 
-                        data-toggle="collapse" 
+                        type="button"
+                        className="navbar-toggle"
+                        data-toggle="collapse"
                         data-target=".navbar-collapse">
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
@@ -58,15 +58,15 @@ return (
             <div className='container-fluid'>
                     <div className='navbar-header'>
                         <p className='navbar-brand'>Ad-Lister</p>
-                        <button 
+                        <button
                         onClick={
                             ()=>{
                                 $('#navbar-container').slideToggle(200);
                             }
                         }
-                        type="button" 
-                        className="navbar-toggle" 
-                        data-toggle="collapse" 
+                        type="button"
+                        className="navbar-toggle"
+                        data-toggle="collapse"
                         data-target=".navbar-collapse">
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
@@ -92,7 +92,7 @@ return (
                         <p
 
                         className='navbar-text'>Profile</p>
-                        <p 
+                        <p
 
                         className='navbar-text'>Logout</p>
                     </div>
@@ -100,7 +100,7 @@ return (
             </div>
         </nav>
 
-        );  
+        );
     }
 }
 
