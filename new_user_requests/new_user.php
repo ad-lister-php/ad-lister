@@ -1,12 +1,13 @@
 <?php
 
     require '../models/User.php';
-    header('Access-Control-Allow-Origin: *');
     $successful['success'] = true;
     $user = new User:
-    $user->name = $_REQUEST['user'];
+    $user->name = $_REQUEST['name'];
+    $user->username = $_Request['username'];
     $user->email = $_REQUEST['email'];
-    $user->username = $_REQUEST['pass'];
+    $user->password = $_REQUEST['pass'];
+    $user->date_joined = date("M-d-Y");
     // $user->password = $_REQUEST['pass-confirm'];
 
     try {
