@@ -1,4 +1,5 @@
 {
+  "proxy": "http://ad-lister.dev",
   "name": "ad-lister-react",
   "version": "0.1.0",
   "private": true,
