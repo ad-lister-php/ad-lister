@@ -8,6 +8,7 @@ $dbc->exec('DROP TABLE IF EXISTS users');
 $query = 'CREATE TABLE users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     name VARCHAR(240) NOT NULL,
+	image VARCHAR(128),
     email VARCHAR(240) NOT NULL,
     username VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
