@@ -1,0 +1,10 @@
+.navbar{
+	position: fixed;
+	width: 100%;
+	.navbar-text{
+		&:hover{
+			color: black;
+			cursor: pointer;
+		}
+	}
+}
