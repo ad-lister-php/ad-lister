@@ -7,7 +7,7 @@ header('Access-Control-Allow-Origin: *');
  */
 class Ad extends Model
 {
-    protected $table = 'users_ads';
+    protected static $table = 'users_ads';
 
     /***** Search through user ads table ****/
     public static function search($title){
