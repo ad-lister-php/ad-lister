@@ -16,10 +16,17 @@ const adsArr = [
         name: 'keyboard',
         img: 'PLACEHOLDER-img',
         desc: 'How did this grand piano get in my apartment?'
+    },
+    {
+        name: 'not-keyboard',
+        img: 'PLACEHOLDER-img',
+        desc: 'How did this grand piano get in my apartment?'
     }
-]
+];
 
-const AdContainer = () => {
+const AdContainer = (props) => {
+
+
     const Ads = adsArr.map((ad) => {
         console.log(ad)
         return (
@@ -32,7 +39,7 @@ const AdContainer = () => {
     })
     return (
         <div className='ad-container container-fluid'>
-            <h1 className='ad-section-title'>Current Ads</h1>
+            <h1 className='ad-section-title'>{props.username} Ads</h1>
             <div>{Ads}</div>
         </div>
 

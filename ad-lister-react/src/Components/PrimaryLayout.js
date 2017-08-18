@@ -4,6 +4,7 @@ import Header from './Header';
 import Main from './Main';
 import Login from './Login';
 import Register from './Register';
+import ProfilePage from './ProfilePage';
 
 
 
@@ -15,6 +16,7 @@ const PrimaryLayout = () => {
                 <Login />
                 <Register />
                 <Route path='/' exact component={Main} />
+                <Route path='/profile' component={ProfilePage} />
             </main>
         </div>
     )
