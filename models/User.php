@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Model.php';
+header('Access-Control-Allow-Origin: *');
 
 class User extends Model {
     protected static $table = 'users';
@@ -34,12 +35,12 @@ class User extends Model {
 
         $results = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $instance = null;
+
         if ($results) {
-            $instance = new static;
-            $instance->attributes = $results;
+            print_r(json_encode($results));
+        }else {
+            print_r(json_encode($results));
         }
 
-        return $instance;
     }
 }
