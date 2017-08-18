@@ -12,6 +12,8 @@ $query = "CREATE TABLE users_ads (
 		price INT UNSIGNED,
 		description TEXT,
 		image VARCHAR(128),
+		date-posted VARCHAR(128),
+		location VARCHAR(128),
 		PRIMARY KEY (id),
 		FOREIGN KEY (seller) REFERENCES users (id)
 		)";
