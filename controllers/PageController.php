@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 require_once __DIR__ . '/../utils/helper_functions.php';
 
 function pageController()
@@ -20,7 +20,7 @@ function pageController()
             die();
         case '/api/login':
             header('Content-Type: application/json');
-            require '../views/users/login.php';
+            echo json_encode(['this' =>'HATE']);
             die();
         default:    // displays 404 if route not specified above
             $mainView = '../views/home.php';
