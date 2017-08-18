@@ -11,7 +11,7 @@ const ProfileDash = () => {
 				onClick={
 					() => {
 						$('#create-ad').fadeToggle(400);
-						$('.ad-container').css('opacity', .5);
+						$('.ad-container').toggleClass('opacity');
 
 					}
 				}

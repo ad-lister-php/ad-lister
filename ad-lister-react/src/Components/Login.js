@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import axios from 'axios';
-// import $ from 'jquery';
 
 class Login extends Component {
     constructor(props) {
@@ -39,7 +38,9 @@ class Login extends Component {
                                         e.preventDefault();
                                         let user = $('#username').val();
                                         let pass = $('#password').val();
-                                        axios.post('api/login',{
+                                        console.log(user);
+                                        console.log(pass);
+                                        axios.post('/api/login', {withCredentials:true}, {
                                             params:{
                                                 username: user,
                                                 password: pass
