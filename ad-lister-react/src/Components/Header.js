@@ -89,12 +89,8 @@ return (
                         <NavLink className='navbar-left btn btn-primary navbar-btn' to='/' exact activeClassName='active'>Home</NavLink>
                     </div>
                     <div className='navbar-right'>
-                        <p
-
-                        className='navbar-text'>Profile</p>
-                        <p 
-
-                        className='navbar-text'>Logout</p>
+                        <NavLink to='/profile' exact activeClassName='active'><p className='navbar-text'>Profile</p></NavLink>
+                        <p className='navbar-text'>Logout</p>
                     </div>
                 </div>
             </div>
