@@ -2,13 +2,12 @@
 
     require '../models/User.php';
     $successful['success'] = true;
-    $user = new User:
+    $user = new User;
     $user->name = $_REQUEST['name'];
-    $user->username = $_Request['username'];
+    $user->username = $_REQUEST['username'];
     $user->email = $_REQUEST['email'];
-    $user->password = $_REQUEST['pass'];
+    $user->password = $_REQUEST['password'];
     $user->date_joined = date("M-d-Y");
-    // $user->password = $_REQUEST['pass-confirm'];
 
     try {
 
