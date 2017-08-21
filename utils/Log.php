@@ -1,31 +1,27 @@
 <?php
-
-class Log 
+require_once "../models/Model.php";
+class Log extends Model
 {
-	private $filename;
-	private $handle;
-
-	function __construct($prefix = "log") {
-		$this->filename = $prefix  . "-" . date("Y-m-d") . ".log";
-		$this->handle = fopen($this->filename, "a");
-	}
-
-	function __destruct() {
-		fclose($this->handle);
-	}
-
-	function logMessage($logLevel, $logMessage) {
+	protected static $table = 'login_attempts';
+	public static function logMessage($logLevel, $logMessage) {
+		self::dbConnect();
 		$log = date("Y-m-d H:i:s") . " ";
-		$log .= "[" .$logLevel . "] " . $logMessage . PHP_EOL;
-		fwrite($this->handle, $log);
+		$log .= $logLevel . $logMessage;
+
+		$query = "
+		insert into " . self::$table . "(record)
+		VALUE ("."'". $log ."'".")";
+
+		$stmt = self::$dbc->prepare($query);
+		$stmt->execute();
 	}
 
-	function info($message) {
-		$this->logMessage("INFO", $message);
+	public static function info($message) {
+		self::logMessage("INFO", $message);
 	}
-	
-	function error($message) {
-		$this->logMessage("ERROR", $message);
+
+	public static function error($message) {
+		self::logMessage("ERROR", $message);
 	}
 }
 

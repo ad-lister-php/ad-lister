@@ -20,9 +20,11 @@ function pageController()
             echo json_encode(['key' => 'value']);
             die();
         case '/api/login':
-            header('Content-Type: application/json');
-            echo json_encode(['test' => 'data']);
-            // require '../views/users/login.php';
+
+            // header('Content-Type: application/json');
+            // echo json_encode(['data' => 'test']);
+            require '../views/users/login.php';
+
             die();
         default:    // displays 404 if route not specified above
             $mainView = '../views/home.php';
@@ -35,4 +37,3 @@ function pageController()
 }
 
 extract(pageController());
-

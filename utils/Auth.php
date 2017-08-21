@@ -20,6 +20,7 @@ class Auth
         // makes sure the values passed in are not empty
         if(($username == '' || $username == null) || ($password == '' || $password == null)) {
             $_SESSION['ERROR_MESSAGE'] = 'Login information was incorrect';
+			Log::error("Failed login attempt");
             return false;
         }
 
@@ -29,6 +30,7 @@ class Auth
         // makes sure the instance returned is not empty
         if ($user == null) {
             $_SESSION['ERROR_MESSAGE'] = 'Login information was incorrect';
+			Log::error("Failed login attempt");
             return false;
         }
 
@@ -37,7 +39,7 @@ class Auth
             // sets session variables used for logged in user
             $_SESSION['IS_LOGGED_IN'] = $user->username;
             $_SESSION['LOGGED_IN_ID'] = $user->id;
-
+			Log::info("Succesful login by " . $username);
             return true;
         }
 
