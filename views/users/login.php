@@ -3,19 +3,19 @@ require_once '../utils/Auth.php';
 // session_start();
 
 
-if (Auth::check()) {
-    $data['state'] = 'error already logged in';
-    print(json_encode($data));
-    die();
-}
+// if (Auth::check()) {
+//     $data['state'] = 'error already logged in';
+//     print(json_encode($data));
+//     die();
+// }
 
 
     $username = User::escape($_REQUEST['username']);
     $password = User::escape($_REQUEST['password']);
 
-    $login = Auth::attempt($username,$password);
+    // $login = Auth::attempt($username,$password);
 
-    print(json_encode($login));
+    print(json_encode($_REQUEST));
 
 
     //

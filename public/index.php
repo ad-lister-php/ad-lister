@@ -21,7 +21,7 @@ function pageController()
             die();
         case '/api/login':
 
-            // header('Content-Type: application/json');
+            header('Content-Type: application/json');
             // echo json_encode(['data' => 'test']);
             require '../views/users/login.php';
 
