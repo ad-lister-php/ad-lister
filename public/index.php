@@ -26,6 +26,10 @@ function pageController()
             require '../views/users/login.php';
 
             die();
+        case '/api/all-ads':
+            // header('Content-Type: application/json');
+            require_once '../views/ads/all.php';
+            die();
         default:    // displays 404 if route not specified above
             $mainView = '../views/home.php';
             break;
