@@ -10,16 +10,21 @@ if (Auth::check()) {
 }
 
 
-    $username = User::escape(json_decode($_REQUEST['username']));
-    $password = User::escape(json_decode($_REQUEST['password']));
+    $username = User::escape($_REQUEST['username']);
+    $password = User::escape($_REQUEST['password']);
+
     $login = Auth::attempt($username,$password);
 
-    if ($login) {
-        $person = User::find($_SESSION['LOGGED_IN_ID']);
-        print(json_encode($person));
-    }else {
-        $data['status'] = 'Invalid Login';
-        print(json_encode($data));
-    }
+    print(json_encode($login));
+
+
+    //
+    // if ($login) {
+    //     $person = User::find($_SESSION['LOGGED_IN_ID']);
+    //     print(json_encode($person));
+    // }else {
+    //     $data['status'] = 'Invalid Login';
+    //     print(json_encode($data));
+    // }
 
  ?>

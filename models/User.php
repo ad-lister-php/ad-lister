@@ -35,12 +35,12 @@ class User extends Model {
 
         $results = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    
 
-        if ($results) {
-            print_r(json_encode($results));
-        }else {
-            print_r(json_encode($results));
-        }
+        return $results;
+
+
+
 
     }
 
