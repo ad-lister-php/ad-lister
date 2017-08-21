@@ -32,16 +32,16 @@ class Ad extends Model
 
     public static function displayAll()
     {
-        self::dbConnecnt();
+        self::dbConnect();
 
-        $query = "select title,seller,price from " . self::$table . ";";
+        $query = "select id,title,seller,price from " . self::$table . ";";
 
         $stmt = self::$dbc->prepare($query);
         $stmt->execute();
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $results; 
+    
+        return $results;
     }
 
 
