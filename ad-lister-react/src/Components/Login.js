@@ -38,7 +38,7 @@ class Login extends Component {
                                             }
                                         }).then((results)=>{
                                             if (results.data.username) {
-                                                console.log(results.data.username)
+                                                // console.log(results.data.username)
                                                 this.props.setLoggedIn(results.data.username);
                                             }
                                         });

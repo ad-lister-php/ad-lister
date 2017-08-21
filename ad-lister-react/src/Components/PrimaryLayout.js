@@ -7,6 +7,7 @@ import Main from './Main';
 import ProfilePage from './ProfilePage';
 import LogRegPage from './LogRegPage';
 import NotFound from './NotFound';
+import axios from 'axios';
 
 
 
@@ -21,6 +22,7 @@ class PrimaryLayout extends Component {
         }
         console.log(this.state.loggedIn)
         this.setLoggedIn = this.setLoggedIn.bind(this);
+        this.logOut = this.logOut.bind(this);
     }
     setLoggedIn(username){
         this.setState({
@@ -30,15 +32,19 @@ class PrimaryLayout extends Component {
         console.log(this.state)
     }
     logOut(){
-        this.setState({
-            loggedIn: false
-        });
+        axios.get('/api/logout').then(() => {
+            this.setState({
+                loggedIn: false
+            });
+        })
     }
 
     render() {
         return (
             <div>
-                <Header isLoggedIn={this.state}/>
+                <Header 
+                isLoggedIn={this.state} 
+                logOut={this.logOut}/>
                 <main className='main'>
                 <Switch>
                     <Route path='/' exact component={Main} />
