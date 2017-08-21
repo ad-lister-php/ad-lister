@@ -35,10 +35,10 @@ class Auth
         }
 
         // checks password submitted against hashed password
-        if (password_verify($password, $user->password)) {
+        if (password_verify($password, $user['password'])) {
             // sets session variables used for logged in user
-            $_SESSION['IS_LOGGED_IN'] = $user->username;
-            $_SESSION['LOGGED_IN_ID'] = $user->id;
+            $_SESSION['IS_LOGGED_IN'] = $user['username'];
+            $_SESSION['LOGGED_IN_ID'] = $user['id'];
 			Log::info("Succesful login by " . $username);
             return true;
         }
