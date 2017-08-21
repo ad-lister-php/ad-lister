@@ -39,7 +39,7 @@ class Auth
             // sets session variables used for logged in user
             $_SESSION['IS_LOGGED_IN'] = $user->username;
             $_SESSION['LOGGED_IN_ID'] = $user->id;
-			Log::("Succesful login by " . $username);
+			Log::info("Succesful login by " . $username);
             return true;
         }
 
