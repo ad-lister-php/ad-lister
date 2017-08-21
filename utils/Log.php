@@ -6,7 +6,7 @@ class Log extends Model
 	public static function logMessage($logLevel, $logMessage) {
 		self::dbConnect();
 		$log = date("Y-m-d H:i:s") . " ";
-		$log .= $logLevel . $logMessage;
+		$log .= $logLevel . " " . $logMessage;
 
 		$query = "
 		insert into " . self::$table . "(record)
