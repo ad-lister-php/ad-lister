@@ -1,8 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import $ from 'jquery';
-import Login from './Login';
-import Register from './Register';
 
 const loggedIn = false;
 const Header = () => {

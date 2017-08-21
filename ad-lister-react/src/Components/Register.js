@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 import ReactFilestack from 'filestack-react';
 import defaultProfilePic from './../img/download.jpeg';
 
@@ -35,20 +35,22 @@ class Register extends Component{
 
         return(
                 <div id='register' className='container-fluid'>
-                    <div className='login-container'>
+                    <div className='login-container col-md-offset-4 col-md-4'>
                         <div className='form-container'>
                             <h1>Register:</h1>
                             <form >
                                 <div className='form-group input-group-lg'>
                                     <div>
-                                        <img className='register-image' src={this.state.handle}/>
-                                        <ReactFilestack
-                                          apikey={apikey}
-                                          buttonText="Add a Profile Image"
-                                          buttonClass="btn btn-primary"
-                                          options={this.state.fileStackOptions}
-                                          onSuccess={this.onSuccess}
-                                        />
+                                        <img alt='profile-pic' className='register-image' src={this.state.handle}/>
+                                        <div className='filestack-container'>
+                                            <ReactFilestack
+                                              apikey={apikey}
+                                              buttonText="Add a Profile Image"
+                                              buttonClass="btn btn-primary filestack-button"
+                                              options={this.state.fileStackOptions}
+                                              onSuccess={this.onSuccess}
+                                            />
+                                        </div>
                                     </div>
                                     <input name='user' required className='form-control' type='text' placeholder='Name' />
                                     <input name='email' required className='form-control' type='email'placeholder='Email' />
