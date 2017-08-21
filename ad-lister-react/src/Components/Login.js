@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import axios from 'axios';
+// import {connect} from 'react-redux';
 
 class Login extends Component {
     constructor(props) {
@@ -10,15 +11,7 @@ class Login extends Component {
         this.state = {
 
         }
-        this.getSession();
-    }
-
-    getSession(){
-        axios.get('/api/check').then(
-            (response) => {
-                console.log(response);
-            }
-        )
+        console.log(props);
     }
 
 
@@ -44,7 +37,10 @@ class Login extends Component {
                                                 password: pass
                                             }
                                         }).then((results)=>{
-                                            console.log(results);
+                                            if (results.data.username) {
+                                                console.log(results.data.username)
+                                                this.props.setLoggedIn(results.data.username);
+                                            }
                                         });
                                     }
                                 }

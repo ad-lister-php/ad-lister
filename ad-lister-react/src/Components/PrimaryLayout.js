@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
@@ -10,19 +10,51 @@ import NotFound from './NotFound';
 
 
 
-const PrimaryLayout = () => {
-    return (
-        <div>
-            <Header />
-            <main className='main'>
-            <Switch>
-                <Route path='/' exact component={Main} />
-                <Route path='/profile' component={ProfilePage} />
-                <Route path='/users' component={LogRegPage} />
-                <Route component={NotFound}/>
-            </Switch>
-            </main>
-        </div>
-    )
+class PrimaryLayout extends Component {
+    constructor(props) {
+        super(props);
+
+
+        this.state = {
+            loggedIn: false,
+            username: ''
+        }
+        console.log(this.state.loggedIn)
+        this.setLoggedIn = this.setLoggedIn.bind(this);
+    }
+    setLoggedIn(username){
+        this.setState({
+            loggedIn: true,
+            username: username
+        })
+        console.log(this.state)
+    }
+    logOut(){
+        this.setState({
+            loggedIn: false
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                <Header isLoggedIn={this.state}/>
+                <main className='main'>
+                <Switch>
+                    <Route path='/' exact component={Main} />
+                    <Route path='/profile' component={ProfilePage} />
+                    <Route path='/users' component={() => (<LogRegPage setLoggedIn={this.setLoggedIn}/>)} />
+                    <Route component={NotFound}/>
+                </Switch>
+                </main>
+            </div>
+        )
+    }
 }
+// function setLoggedIn(username) {
+//     return {
+//         type: SET_LOGGED_IN,
+//         username
+//     }    
+// }
 export default PrimaryLayout;
