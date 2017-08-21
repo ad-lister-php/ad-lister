@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import $ from 'jquery';
+import {Link} from 'react-router-dom';
 import ReactFilestack from 'filestack-react';
 import defaultProfilePic from './../img/download.jpeg';
 
@@ -34,8 +34,8 @@ class Register extends Component{
     render(){
 
         return(
-                <div id='register' className='container-fluid'>
-                    <div className='login-container col-md-offset-4 col-md-4'>
+                <div id='register' className='container-fluid log-reg-container'>
+                    <div className='login-container'>
                         <div className='form-container'>
                             <h1>Register:</h1>
                             <form >
@@ -57,9 +57,14 @@ class Register extends Component{
                                     <input name='pass' required className='form-control' type='password' placeholder='Password' />
                                     {/*<input name='pass-confirm' required className='form-control' type='password' placeholder='Confirm Password' />*/}
                                     <button
-
+                                    onClick={
+                                        (e) => {
+                                            e.preventDefault();
+                                        }
+                                    }
                                     className='form-control btn btn-primary' 
                                     type='submit'>Register</button>
+                                    <p className='text-center'>Not new? login <Link to='/users/login' exact activeClassName='active'>Here</Link></p>
                                 </div>
                             </form>
                         </div>
