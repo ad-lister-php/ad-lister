@@ -38,14 +38,14 @@ class Login extends Component {
                                         e.preventDefault();
                                         let user = $('#username').val();
                                         let pass = $('#password').val();
-                                        $.post('/api/login', {withCredentials:true}, {
+                                        axios.post('/api/login', {withCredentials:true}, {
                                             params:{
                                                 username: user,
                                                 password: pass
                                             }
                                         }).then((results)=>{
                                             console.log(results);
-                                        }).fail(error => console.log(error));
+                                        });
                                     }
                                 }
                                 className='form-control btn btn-primary'
