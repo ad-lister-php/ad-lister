@@ -24,7 +24,7 @@ class Login extends Component {
 
     render (){
         return(
-            <div id='login' className='col-md-4'>
+            <div id='login' className='log-reg-container container-fluid'>
                 <div className='login-container'>
                     <div className='form-container'>
                         <h1>Login:</h1>
@@ -38,16 +38,14 @@ class Login extends Component {
                                         e.preventDefault();
                                         let user = $('#username').val();
                                         let pass = $('#password').val();
-                                        console.log(user);
-                                        console.log(pass);
-                                        axios.post('/api/login', {withCredentials:true}, {
+                                        $.post('/api/login', {withCredentials:true}, {
                                             params:{
                                                 username: user,
                                                 password: pass
                                             }
                                         }).then((results)=>{
                                             console.log(results);
-                                        })
+                                        }).fail(error => console.log(error));
                                     }
                                 }
                                 className='form-control btn btn-primary'

@@ -21,7 +21,7 @@ function pageController()
             die();
         case '/api/login':
             header('Content-Type: application/json');
-            echo json_encode(['data' => 'test']);
+            echo json_encode(['test' => 'data']);
             // require '../views/users/login.php';
             die();
         default:    // displays 404 if route not specified above

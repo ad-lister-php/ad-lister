@@ -1,10 +1,17 @@
+$navbar-color: #222;
 .navbar{
+	background-color: $navbar-color;
+	border-color: $navbar-color;
     position: fixed;
     z-index: 25;
     width: 100%;
+    .navbar-brand {
+    	color: white;
+    }
     .navbar-text{
+		color: white;
         &:hover{
-            color: black;
+            color: (white - 100);
             cursor: pointer;
         }
     }

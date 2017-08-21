@@ -6,7 +6,10 @@ import $ from 'jquery';
 
 const fileStackURL = 'https://cdn.filestackcontent.com/';
 const apikey = 'Arm3f7HJReOkjrR25yPiwz';
-const fileStackOptions = {fromSources: ['local_file_system', 'url', 'imagesearch']};
+const fileStackOptions = {
+	fromSources: ['local_file_system', 'url', 'imagesearch'],
+	maxFiles: 1
+};
 class CreateAnAd extends Component {
 	constructor(props) {
 		super(props);
