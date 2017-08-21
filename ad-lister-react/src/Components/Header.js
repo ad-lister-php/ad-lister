@@ -102,10 +102,9 @@ class Header extends Component {
                         </div>
                         <div className='navbar-right'>
                         <NavLink to='/profile' exact activeClassName='active'><p className='navbar-text'>Profile</p></NavLink>
-                        <p className='navbar-text'>Logout</p>
-                        <p
-
-                        className='navbar-text'>{this.state.username}</p>
+                        <p 
+                        onClick={() => {this.props.logOut()}}
+                        className='navbar-text'>Logout</p>
                         </div>
                     </div>
                 </div>
