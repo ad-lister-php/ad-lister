@@ -10,11 +10,12 @@ class Ad extends Model
     protected static $table = 'users_ads';
 
     /***** Search through user ads table ****/
-    public static function search($title){
+    public static function search($title)
+    {
 
         self::dbConnect();
 
-        $query = "select * from" . self::$table . " where title like %:title%;";
+        $query = "select * from " . self::$table . " where title like %:title%;";
 
         $stmt = self::$dbc->prepare($query);
 
@@ -23,16 +24,25 @@ class Ad extends Model
 
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $data['data'] = $results;
 
-        if ($results) {
-            print_r(json_encode($data['data']));
-        }else {
-            print_r(json_encode($data['data']));
-        }
+        return $results;
+
 
     }
 
+    public static function displayAll()
+    {
+        self::dbConnecnt();
+
+        $query = "select title,seller,price from " . self::$table . ";";
+
+        $stmt = self::$dbc->prepare($query);
+        $stmt->execute();
+
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $results; 
+    }
 
 
 }

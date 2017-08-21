@@ -1,20 +1,26 @@
 <?php
 require_once '../utils/Auth.php';
-// session_start();
+session_start();
 
 
-// if (Auth::check()) {
-//     $data['state'] = 'error already logged in';
-//     print(json_encode($data));
-//     die();
-// }
+if (Auth::check()) {
+    $data['state'] = 'error already logged in';
+    print(json_encode($data));
+    die();
+}
 
-    $login = Auth::attempt($_REQUEST['username'],$_REQUEST['password']);
-    
+
+    $username = User::escape($_REQUEST['username']);
+    $password = User::escape($_REQUEST['password'])
+    $login = Auth::attempt($username,$password);
+
 
     if ($login) {
-        $person = Model::find($_SESSION['LOGGED_IN_ID']);
+        $person = User::find($_SESSION['LOGGED_IN_ID']);
+        print(json_encode($person));
+    }else {
+        $data['status'] = 'Invalid Login';
+        print(json_encode($data));
     }
-    print(json_encode($person));
 
  ?>
