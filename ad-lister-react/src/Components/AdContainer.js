@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Ad from './Ad';
 import axios from 'axios';
 
@@ -29,37 +29,55 @@ const adsArr = [
     }
 ];
 
-const AdContainer = (props) => {
-    axios.get('/api/all-ads').then((results) => {
-        console.log(results);
-    })
-    let sectionTitle = '';
-    let i = -1;
-    const Ads = adsArr.map((ad) => {
-        i++;
-        console.log(ad);
-        return (
-            <Ad
-            id={'ad' + i }
-            name={ad.name}
-            price={ad.price}
-            img={ad.img}
-            desc={ad.desc}
-            />
-        )
-    })
-    if (!props.username) {
-        sectionTitle = 'Public'
-    } else {
-        sectionTitle = props.username;
-    }
-    return (
-        <div className='ad-container container-fluid'>
-            <h1 className='ad-section-title'>{sectionTitle} Listings</h1>
-            <div>{Ads}</div>
-        </div>
+class AdContainer extends Component {
+    constructor(props) {
+        super(props);
 
-    )
+        this.state = {
+            data: []
+        }
+        // const adsArr = this.state.data;
+    }
+    componentWillMount(){
+        axios.get('/api/all-ads').then((results) => {
+            console.log('request done!')
+            this.setState({
+                data: results.data
+            })
+        })
+        
+    }
+    render(){
+        console.log(this.state.data)
+        console.log('rendered!')
+        let sectionTitle = '';
+        let i = -1;
+        const Ads = this.state.data.map((ad) => {
+            i++;
+            console.log(ad);
+            return (
+                <Ad
+                id={'ad' + i }
+                name={ad.title}
+                price={ad.price}
+                img={ad.img}
+                desc={ad.seller}
+                />
+            )
+        })
+        if (!this.props.username) {
+            sectionTitle = 'Public'
+        } else {
+            sectionTitle = this.props.username;
+        }
+        return (
+            <div className='ad-container container-fluid'>
+                <h1 className='ad-section-title'>{sectionTitle} Listings</h1>
+                <div>{Ads}</div>
+            </div>
+
+        )
+    }
 }
 
 export default AdContainer;

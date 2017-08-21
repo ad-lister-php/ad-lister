@@ -2,14 +2,14 @@ import React from 'react';
 import AdContainer from './AdContainer';
 import ProfileDash from './ProfileDash';
 
-let user = "[USERNAME]'s";
+// let user = "[USERNAME]'s";
 
-const ProfilePage = () =>{
+const ProfilePage = (props) =>{
 	return (
 		<div>
 			<ProfileDash />
 			<AdContainer
-			username={user}
+			username={props.username}
 			/>
 		</div>
 	);

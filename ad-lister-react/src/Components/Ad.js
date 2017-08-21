@@ -5,7 +5,7 @@ import $ from 'jquery'
 const Ad = (props) =>{
 	let img = '';
 	let price = '';
-	if (props.img.search('https://cdn.filestackcontent.com/') === -1) {
+	if (!props.img) {
 		img = DefaultAd;
 	} else {
 		img = props.img;
