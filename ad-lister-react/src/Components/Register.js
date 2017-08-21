@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import ReactFilestack from 'filestack-react';
 import defaultProfilePic from './../img/download.jpeg';
+import $ from 'jquery';
+import axios from 'axios';
 
 const fileStackURL = 'https://cdn.filestackcontent.com/';
 const apikey = 'Arm3f7HJReOkjrR25yPiwz';
@@ -52,17 +54,34 @@ class Register extends Component{
                                             />
                                         </div>
                                     </div>
-                                    <input name='user' required className='form-control' type='text' placeholder='Name' />
-                                    <input name='email' required className='form-control' type='email'placeholder='Email' />
-                                    <input name='pass' required className='form-control' type='password' placeholder='Password' />
+                                    <input id='name'name='name' required className='form-control'  placeholder='full name' />
+                                    <input id='username'name='user' required className='form-control' type='text' placeholder='Username' />
+                                    <input id='email'name='email' required className='form-control' type='email'placeholder='Email' />
+                                    <input id='password'name='pass' required className='form-control' type='password' placeholder='Password' />
                                     {/*<input name='pass-confirm' required className='form-control' type='password' placeholder='Confirm Password' />*/}
                                     <button
                                     onClick={
                                         (e) => {
                                             e.preventDefault();
+                                            let name = $('#name').val();
+                                            let user = $('#username').val();
+                                            let pass = $('#password').val();
+                                            let email = $('#email').val();
+                                            axios.post('/api/register', {withCredentials:true}, {
+                                                params:{
+                                                    name: name,
+                                                    username: user,
+                                                    password: pass,
+                                                    email: email
+                                                }
+                                            }).then((results)=>{
+                                                console.log(results);
+                                            });
+
+
                                         }
                                     }
-                                    className='form-control btn btn-primary' 
+                                    className='form-control btn btn-primary'
                                     type='submit'>Register</button>
                                     <p className='text-center'>Not new? login <Link to='/users/login' exact activeClassName='active'>Here</Link></p>
                                 </div>
