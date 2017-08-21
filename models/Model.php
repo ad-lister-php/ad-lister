@@ -15,11 +15,11 @@ $_ENV = include __DIR__ . '/../.env.php';
  * is not necessary in instance methods.
  */
 abstract class Model {
-    /** @var PDO|null the connection to the database */ 
+    /** @var PDO|null the connection to the database */
     protected static $dbc;
     /** @var string the name of the table */
     protected static $table;
-    
+
     /** @var array the attributes of this instance */
     protected $attributes = [];
 
@@ -197,15 +197,15 @@ abstract class Model {
         //Store the resultset in a variable named $result
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $instance = null;
-        // if we have a result, create a new instance
-        if ($result) {
-            $instance = new static;
-            $instance->attributes = $result;
-        }
+        // $instance = null;
+        // // if we have a result, create a new instance
+        // if ($result) {
+        //     $instance = new User();
+        //     $instance->attributes = $result;
+        // }
 
         // return either the found instance or null
-        return $instance;
+        return $result;
     }
 
 
