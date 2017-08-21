@@ -1,6 +1,6 @@
 <?php
 require_once '../utils/Auth.php';
-session_start();
+// session_start();
 
 
 if (Auth::check()) {
@@ -10,10 +10,9 @@ if (Auth::check()) {
 }
 
 
-    $username = User::escape($_REQUEST['username']);
-    $password = User::escape($_REQUEST['password'])
+    $username = User::escape(json_decode($_REQUEST['username']));
+    $password = User::escape(json_decode($_REQUEST['password']));
     $login = Auth::attempt($username,$password);
-
 
     if ($login) {
         $person = User::find($_SESSION['LOGGED_IN_ID']);
