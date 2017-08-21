@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Ad from './Ad';
 
 const adsArr = [
     {
         name: 'guitar',
-        img: 'PLACEHOLDER-img',
+        img: 'https://cdn.filestackcontent.com/CJsRgXEwRwaIbARmKxtx',
         desc: 'A Great guitar, just need to sell for money'
     },
     {

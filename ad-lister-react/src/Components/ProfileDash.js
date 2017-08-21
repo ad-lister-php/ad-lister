@@ -6,11 +6,11 @@ import $ from 'jquery';
 const ProfileDash = () => {
 	return (
 		<div>
-			<div className='profile-dash'>
-				<p 
+			<div className='profile-dash text-center'>
+				<p
 				onClick={
 					() => {
-						$('#create-ad').fadeToggle(400);
+						$('#create-ad').fadeToggle(200);
 						$('.ad-container').toggleClass('opacity');
 
 					}

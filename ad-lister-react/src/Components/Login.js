@@ -24,7 +24,7 @@ class Login extends Component {
 
     render (){
         return(
-            <div id='login' className='container-fluid'>
+            <div id='login' className='col-md-4'>
                 <div className='login-container'>
                     <div className='form-container'>
                         <h1>Login:</h1>
