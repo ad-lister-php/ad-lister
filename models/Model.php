@@ -197,14 +197,9 @@ abstract class Model {
         //Store the resultset in a variable named $result
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $instance = null;
-          if we have a result, create a new instance
-          if ($result) {
-             $instance = new User();
-             $instance->attributes = $result;
-          }
 
-        // return either the found instance or null
+
+        
         return $result;
     }
 
