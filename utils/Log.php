@@ -2,22 +2,17 @@
 
 class Log 
 {
-	private $filename;
-	private $handle;
-
-	function __construct($prefix = "log") {
-		$this->filename = $prefix  . "-" . date("Y-m-d") . ".log";
-		$this->handle = fopen($this->filename, "a");
-	}
-
-	function __destruct() {
-		fclose($this->handle);
-	}
 
 	function logMessage($logLevel, $logMessage) {
 		$log = date("Y-m-d H:i:s") . " ";
-		$log .= "[" .$logLevel . "] " . $logMessage . PHP_EOL;
-		fwrite($this->handle, $log);
+		$log .= $logLevel . $logMessage;
+		$_ENV = include __DIR__ . "/../../.env.php";
+		require_once "../db_connect.php";
+
+		$query = "INSERT INTO login_attmepts (record)
+				VALUE (" . $log . ")";
+
+		$dbc->exec($query);
 	}
 
 	function info($message) {
