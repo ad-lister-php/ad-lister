@@ -1,5 +1,6 @@
 import React from 'react';
 import DefaultAd from './../img/default-ad.jpeg';
+import $ from 'jquery'
 
 const Ad = (props) =>{
 	let img = '';
@@ -10,21 +11,23 @@ const Ad = (props) =>{
 		img = props.img;
 	}
 	if (!props.price){
-		price = '$2.50';
+		price = '2.50';
 	} else {
 		price = props.price;
 	}
     return (
         <div
-        onClick={
-		    (e) => {
-		        console.log(e.target.img);
-		    }
-		}
+        id={props.id}
+        onClick={(e) => {
+
+        	$(e.target).toggleClass('selected-ad');
+
+	        }
+	    }
         className='ad col-md-4'>
         	<div className='flex-title'>
 	            <h3>{props.name}</h3>
-	            <h3>{price}</h3>
+	            <h3>${price}</h3>
             </div>
             <img 
             onClick={

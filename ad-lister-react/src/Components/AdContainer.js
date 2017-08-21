@@ -1,41 +1,46 @@
 import React from 'react';
 import Ad from './Ad';
+import axios from 'axios';
 
 const adsArr = [
     {
         name: 'guitar',
-        price: '$250',
+        price: '250',
         img: 'https://cdn.filestackcontent.com/CJsRgXEwRwaIbARmKxtx',
         desc: 'A Great guitar, just need to sell for money'
     },
     {
         name: 'piano',
-        price: '$900',
+        price: '900',
         img: 'PLACEHOLDER-img',
         desc: 'How did this grand piano get in my apartment?'
     },
     {
         name: 'best-keyboard',
-        price: '$.50',
+        price: '.50',
         img: 'PLACEHOLDER-img',
         desc: 'rubber dome garbage'
     },
     {
         name: 'not-keyboard',
-        price: '$5',
+        price: '5',
         img: 'PLACEHOLDER-img',
         desc: 'Blender'
     }
 ];
 
 const AdContainer = (props) => {
-
+    axios.get('/api/all-ads').then((results) => {
+        console.log(results);
+    })
     let sectionTitle = '';
-
+    let i = -1;
     const Ads = adsArr.map((ad) => {
-        console.log(ad)
+        i++;
+        console.log(ad);
         return (
             <Ad
+            id={'ad' + i }
             name={ad.name}
             price={ad.price}
             img={ad.img}
