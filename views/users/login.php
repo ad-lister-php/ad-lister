@@ -13,18 +13,16 @@ require_once '../utils/Auth.php';
     $username = User::escape($_REQUEST['username']);
     $password = User::escape($_REQUEST['password']);
 
-    // $login = Auth::attempt($username,$password);
+    $login = Auth::attempt($username,$password);
 
-    print(json_encode($_REQUEST));
+    // print(json_encode($_SESSION['LOGGED_IN_ID']));
 
-
-    //
-    // if ($login) {
-    //     $person = User::find($_SESSION['LOGGED_IN_ID']);
-    //     print(json_encode($person));
-    // }else {
-    //     $data['status'] = 'Invalid Login';
-    //     print(json_encode($data));
-    // }
+    if ($login != null) {
+        $person = User::find($_SESSION['LOGGED_IN_ID']);
+        print(json_encode($person));
+    }else {
+        $data['status'] = 'Invalid Login';
+        print(json_encode($data));
+    }
 
  ?>
