@@ -15,7 +15,7 @@ require_once '../utils/Auth.php';
 
     $login = Auth::attempt($username,$password);
 
-    // print(json_encode($_SESSION['LOGGED_IN_ID']));
+    // print(json_encode($login));
 
     if ($login != null) {
         $person = User::find($_SESSION['LOGGED_IN_ID']);
