@@ -10,8 +10,8 @@ if (Auth::check()) {
 }
 
 
-    $username = User::escape($_REQUEST['username']);
-    $password = User::escape($_REQUEST['password']);
+    $username = Model::escape($_REQUEST['username']);
+    $password = Model::escape($_REQUEST['password']);
 
     $login = Auth::attempt($username,$password);
 

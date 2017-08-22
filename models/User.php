@@ -44,8 +44,4 @@ class User extends Model {
 
     }
 
-    public static function escape($input)
-    {
-        return htmlspecialchars(strip_tags($input));
-    }
 }
