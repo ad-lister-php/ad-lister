@@ -15,9 +15,11 @@ class Ad extends Model
 
         self::dbConnect();
 
-        $query = "select * from " . self::$table . " where title like %:title%;";
+        $query = "select * from " . self::$table . " where title like :title";
 
         $stmt = self::$dbc->prepare($query);
+
+		$title = "%" . $title . "%";
 
         $stmt->bindValue(':title', $title, PDO::PARAM_STR);
         $stmt->execute();
