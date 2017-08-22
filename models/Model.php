@@ -90,7 +90,7 @@ abstract class Model {
     /**
      * remove the instance from the database
      */
-    public function delete()
+    public static function delete()
     {
         $query = 'DELETE FROM ' . static::$table . ' WHERE id = :id';
 
