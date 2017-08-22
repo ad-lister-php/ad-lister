@@ -12,13 +12,13 @@ if (!Auth::check()) {
 
 //$ad = new Ad();
 
-$user = User::find(Auth::id());
+$user = User::user();
 $ads = Ad::all();
 
 $results = [];
 
 foreach($ads as $ad) {
-	if($ad['seller'] == $user->username) {
+	if($ad['seller'] == $user['username']) {
 		$results[] = $ad;
 	}
 }
