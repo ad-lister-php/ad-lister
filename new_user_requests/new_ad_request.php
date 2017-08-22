@@ -1,13 +1,12 @@
 <?php
-    require_once "../models/Ad.php";
-    header('Access-Control-Allow-Origin: *');
+	include './../bootstrap.php';
     $ad = new Ad;
-    $ad->seller = $_REQUEST['seller'];
-    $ad->title = $_REQUEST['title'];
-    $ad->price = $_REQUEST['price'];
-    $ad->description = $_REQUEST['desc'];
+    $ad->seller = Model::escape($_REQUEST['seller']);
+    $ad->title = Model::escape($_REQUEST['title']);
+    $ad->price = Model::escape($_REQUEST['price']);
+    $ad->description = Model::escape($_REQUEST['desc']);
     $ad->date_posted = date("M-d-Y");
-    $ad->location = $_REQUEST['location'];
+    $ad->location = Model::escape($_REQUEST['location']);
 
     $successful['success'] = true;
 

@@ -2,7 +2,7 @@
 
 include "./../bootstrap.php";
 
-$term = $_REQUEST['value'];
+$term = Model::escape($_REQUEST['value']);
 
 $list = Ad::search($term);
 

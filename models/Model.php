@@ -224,4 +224,9 @@ abstract class Model {
 		return $results;
     }
 
+    public static function escape($input)
+    {
+        return htmlspecialchars(strip_tags($input));
+    }
+
 }
