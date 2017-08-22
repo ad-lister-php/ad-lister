@@ -64,6 +64,7 @@
       cursor: pointer; }
 
 .ad {
+  min-height: 400px;
   background-color: #FFF;
   box-sizing: border-box;
   border: 5px solid #222;
@@ -73,11 +74,19 @@
   width: 95%;
   position: relative;
   z-index: 0; }
-  .ad-container .flex-title {
+  .ad-container .flex-title, .ad-container .flex-footer {
+    position: relative;
     display: flex;
     justify-content: space-between; }
-    .ad-container .flex-title h3 {
+    .ad-container .flex-title h3, .ad-container .flex-footer h3 {
       display: inline-block; }
+  .ad-container .flex-footer {
+    position: relative;
+    padding-top: 2vh; }
+    .ad-container .flex-footer span {
+      text-align: center;
+      width: 50px;
+      font-size: 1.5em; }
 
 .ad-section-title {
   color: #FFF; }

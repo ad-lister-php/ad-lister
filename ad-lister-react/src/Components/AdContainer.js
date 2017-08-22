@@ -60,7 +60,7 @@ class AdContainer extends Component {
                 id={'ad' + i }
                 name={ad.title}
                 price={ad.price}
-                img={ad.img}
+                img={ad.image}
                 desc={ad.seller}
                 />
             )

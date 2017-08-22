@@ -34,7 +34,7 @@ class Ad extends Model
     {
         self::dbConnect();
 
-        $query = "select id,title,seller,price from " . self::$table . ";";
+        $query = "select id,title,seller,price,image from " . self::$table . ";";
 
         $stmt = self::$dbc->prepare($query);
         $stmt->execute();
