@@ -1,9 +1,8 @@
 <?php
 
-require "../models/User.php";
-require "../models/Ad.php";
+include "./../bootstrap.php";
 
-$user = User::find(Auth::id());
+$user = Auth::user();
 
 if ($user) {
 	$ads = Ad:all();
