@@ -27,9 +27,13 @@ class Register extends Component{
         console.log(this.props);
         // this.redirect();
     }
-
+    redirectNewUser(){
+        this.props.history.push('/users/login');
+    }
     redirect(){
-        this.props.history.push('/profile');
+        if (this.props.username !== ''){
+            this.props.history.push('/profile');
+        }
     }
 
     onSuccess(results) {
@@ -38,6 +42,7 @@ class Register extends Component{
         let imageKey = results.filesUploaded[0].handle;
         let handle = fileStackURL + results.filesUploaded[0].handle;
         this.setState({
+            imageKey: imageKey,
             handle: handle,
             imageKey: imageKey
         })
@@ -50,6 +55,8 @@ class Register extends Component{
                     <div className='login-container'>
                         <div className='form-container'>
                             <h1>Register:</h1>
+                            <div>
+                            </div>
                             <form >
                                 <div className='form-group input-group-lg'>
                                     <div>
@@ -63,37 +70,65 @@ class Register extends Component{
                                               onSuccess={this.onSuccess}
                                             />
                                         </div>
+                                        <p id='register-error' className='login-error error'>*All form fields are required</p>
+                                        <p id='password-error' className='login-error error'>*Passwords do not match</p>
                                     </div>
-                                    <input id='name'name='name' required className='form-control'  placeholder='full name' />
+                                    <input id='name'name='name' required className='form-control'  placeholder='Full name' />
                                     <input id='username'name='user' required className='form-control' type='text' placeholder='Username' />
                                     <input id='email'name='email' required className='form-control' type='email'placeholder='Email' />
                                     <input id='password'name='pass' required className='form-control' type='password' placeholder='Password' />
-                                    {/*<input name='pass-confirm' required className='form-control' type='password' placeholder='Confirm Password' />*/}
+                                    <input id='pass-confirm' name='pass-confirm' required className='form-control' type='password' placeholder='Confirm Password' />
                                     <button
                                     onClick={
-                                        (e) => {
-                                            e.preventDefault();
-                                            let name = $('#name').val();
-                                            let user = $('#username').val();
-                                            let pass = $('#password').val();
-                                            let email = $('#email').val();
-                                            let image = this.state.handle;
-                                            axios.post('/api/register', {withCredentials:true}, {
-                                                params:{
-                                                    name: name,
-                                                    username: user,
-                                                    password: pass,
-                                                    email: email,
-                                                    image: image
+                                            (e) => {
+                                                e.preventDefault();
+                                                $('#register-error').addClass('login-error');
+                                                $('#password-error').addClass('login-error');
+
+                                                let name = $('#name').val();
+                                                let user = $('#username').val();
+                                                let pass = $('#password').val();
+                                                console.log(pass);
+                                                let passConfirm = $('#pass-confirm').val();
+                                                console.log(passConfirm);
+                                                let email = $('#email').val();
+                                                let image = '';
+                                                if (this.state.imageKey !== ''){
+                                                    image = this.state.imageKey;
+                                                } else {
+                                                    image = 'default';
                                                 }
-                                            }).then((results)=>{
-                                                console.log(results);
-                                                if (results.data.success){
-                                                    this.redirect();
-                                                }
-                                            });
+
+                                                if (name == '' ||
+                                                    user == '' ||
+                                                    pass == '' ||
+                                                    email == '') {
+
+                                                    $('#register-error').removeClass('login-error');
+
+                                                } else if (pass !== passConfirm) {
+
+                                                    $('#password-error').removeClass('login-error');
+
+                                                } else {
+
+                                                axios.post('/api/register', {withCredentials:true}, {
+                                                    params:{
+                                                        name: name,
+                                                        username: user,
+                                                        password: pass,
+                                                        email: email,
+                                                        image: image
+                                                    }
+                                                }).then((results)=>{
+                                                    console.log(results);
+                                                    if (results.data.success == true){
+                                                        this.redirectNewUser();
+                                                    }
+                                                });
 
 
+                                            }
                                         }
                                     }
                                     className='form-control btn btn-primary'
