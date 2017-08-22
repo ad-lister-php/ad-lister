@@ -49,12 +49,18 @@ class AdContainer extends Component {
                 }) 
             });
         } else {
-            axios.get('/api/all-ads').then((results) => {
-                console.log('request done!')
+            if (this.props.searchQuery == 'default'){
+                axios.get('/api/all-ads').then((results) => {
+                    console.log('request done!')
+                    this.setState({
+                        data: results.data
+                    })
+                })   
+            } else {
                 this.setState({
-                    data: results.data
+                    data: this.props.searchQuery.data
                 })
-            })   
+            }
         }
         
     }
@@ -62,15 +68,15 @@ class AdContainer extends Component {
         // console.log(this.state.data)
         // console.log('rendered!')
         let sectionTitle = '';
-        let i = -1;
+        // let i = -1;
         const Ads = this.state.data.map((ad) => {
-            i++;
+            // i++;
             console.log(ad);
             return (
                 <Ad
                 key={ad.id}
-                sql-id={ad.id}
-                id={'ad' + i }
+                sql={ad.id}
+                
                 name={ad.title}
                 price={ad.price}
                 img={ad.image}

@@ -14,9 +14,9 @@ class Header extends Component {
             isLoggedIn: this.props.loggedIn,
             username:''
         }
-        console.log(this.props);
+        // console.log(this.props);
         // this.setLoggedIn = this.setLoggedIn.bind(this);
-        console.log('Header state: ' + this.state.isLoggedIn);
+        // console.log('Header state: ' + this.state.isLoggedIn);
     }
     componentWillMount(){
         axios.get('/api/logginCheck').then((results) => {
@@ -28,6 +28,9 @@ class Header extends Component {
                 this.props.setLoggedIn(results.data.IS_LOGGED_IN)
             }
         });
+    }
+    search() {
+
     }
     redirect(path){
         if (this.props.username != '') {
@@ -47,6 +50,7 @@ class Header extends Component {
                             onClick={
                                 ()=>{
                                     $('#navbar-container').slideToggle(200);
+
                                 }
                             }
                             type="button"
@@ -64,29 +68,32 @@ class Header extends Component {
                         </div>
                         <div>
     {/*=============Search form================*/}
-                            <form className="navbar-form navbar-right">
+                            <form method='GET'  
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                let search = $('#searchbar').val();
+                                this.props.search(search);
+                            }}
+                            className="navbar-form navbar-right">
                                 <div className="form-group input-group">
-                                    <input 
-                                    onClick={
-                                        (e) => {
-                                            e.preventDefault();
-                                        }
-                                    }
+
+                                    <input
+                                    id='searchbar'
+                                    name='value'
                                     type="text" className="form-control" placeholder="Search Postings" />
+
                                     <span 
-                                    onClick={
-                                        (e) => {
-                                            e.preventDefault();
-                                        }
-                                    }
                                     className='input-group-btn'>
-                                        <button
+
+                                        <span
                                         onClick={
                                             (e) => {
                                                 e.preventDefault();
+                                                let search = $('#searchbar').val();
+                                                this.props.search(search);
                                             }
                                         }
-                                        className="btn btn-default">Search</button>
+                                        className="btn btn-default">Search</span>
                                     </span>
                                 </div>
                             </form>

@@ -17,13 +17,29 @@ class PrimaryLayout extends Component {
 
 
         this.state = {
+            search: 'default',
             loggedIn: false,
             username: ''
         }
-        console.log(this.state.loggedIn)
+        // console.log(this.state.loggedIn)
+        this.search = this.search.bind(this);
         this.setLoggedIn = this.setLoggedIn.bind(this);
         this.logOut = this.logOut.bind(this);
     }
+
+    search(search){
+        console.log('SEARCH SUCCESSFUL?');
+        axios.get('/api/search', {
+            params: {
+                value: search
+            }
+        }).then((results)=>{
+                this.setState({
+                    search: results
+                })
+        })
+    }
+
     setLoggedIn(username){
         this.setState({
             loggedIn: true,
@@ -33,7 +49,7 @@ class PrimaryLayout extends Component {
     }
     logOut(){
         axios.get('/api/logout').then((results) => {
-            console.log(results);
+
             this.setState({
                 loggedIn: false,
                 username: ''
@@ -45,12 +61,13 @@ class PrimaryLayout extends Component {
         return (
             <div>
                 <Header
+                search={this.search}
                 setLoggedIn={this.setLoggedIn}
                 isLoggedIn={this.state}
                 logOut={this.logOut}/>
                 <main className='main'>
                 <Switch>
-                    <Route path='/' exact component={Main} />
+                    <Route path='/' exact component={() => (<Main searchQuery={this.state.search} />)} />
                     <Route path='/profile' component={() => (<ProfilePage username={this.state.username} />)} />
                     <Route path='/users' component={() => (<LogRegPage username={this.state.username} setLoggedIn={this.setLoggedIn}/>)} />
                     <Route component={NotFound}/>

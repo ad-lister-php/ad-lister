@@ -1,10 +1,10 @@
 import React from 'react';
 import AdContainer from './AdContainer';
 
-const Main = () => {
+const Main = (props) => {
     return (
         <div>
-            <AdContainer />
+            <AdContainer searchQuery={props.searchQuery} />
         </div>
     )
 }
