@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import axios from 'axios';
+import {withRouter} from 'react-router-dom';
+
 // import {connect} from 'react-redux';
 
 class Login extends Component {
@@ -12,6 +14,12 @@ class Login extends Component {
 
         }
         console.log(props);
+        this.redirect();
+    }
+    redirect(){
+        if (this.props.username != '') {
+            this.props.history.push('/profile');
+        }
     }
 
 
@@ -37,9 +45,10 @@ class Login extends Component {
                                                 password: pass
                                             }
                                         }).then((results)=>{
+                                            console.log(results);
                                             if (results.data.username) {
-                                                // console.log(results.data.username)
                                                 this.props.setLoggedIn(results.data.username);
+
                                             }
                                         });
                                     }
@@ -55,4 +64,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
