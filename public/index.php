@@ -38,6 +38,10 @@ function pageController()
             header('Content-Type: application/json');
             require_once 'logout.php';
             die();
+		case '/api/search':
+			header('Content-Type: application/json');
+			require_once '../new_user_requests/search.php';
+			die();
         case '/api/logginCheck':
             header('Content-Type: application/json');
             require_once '../views/users/user-session.php';
