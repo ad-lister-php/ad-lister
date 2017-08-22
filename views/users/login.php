@@ -19,6 +19,7 @@ if (Auth::check()) {
 
     if ($login != null) {
         $person = User::find($_SESSION['LOGGED_IN_ID']);
+        $person['session'] = $_SESSION['IS_LOGGED_IN'];
         print(json_encode($person));
     }else {
         $data['status'] = 'Invalid Login';

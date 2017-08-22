@@ -45,6 +45,7 @@ class PrimaryLayout extends Component {
         return (
             <div>
                 <Header
+                setLoggedIn={this.setLoggedIn}
                 isLoggedIn={this.state}
                 logOut={this.logOut}/>
                 <main className='main'>

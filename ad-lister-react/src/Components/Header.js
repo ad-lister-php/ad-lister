@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {NavLink, withRouter} from 'react-router-dom';
 import $ from 'jquery';
+import axios from 'axios';
 // import {connect} from 'react-redux';
 // import LoginStatus from './../reducers/reducer_set_logged_in.js';
 
@@ -16,6 +17,17 @@ class Header extends Component {
         console.log(this.props);
         // this.setLoggedIn = this.setLoggedIn.bind(this);
         console.log('Header state: ' + this.state.isLoggedIn);
+    }
+    componentWillMount(){
+        axios.get('/api/logginCheck').then((results) => {
+
+            console.log(typeof(results.data))
+
+            if (results.data.IS_LOGGED_IN){
+                console.log(results);
+                this.props.setLoggedIn(results.data.IS_LOGGED_IN)
+            }
+        });
     }
     redirect(path){
         if (this.props.username != '') {

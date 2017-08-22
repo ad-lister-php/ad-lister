@@ -17,6 +17,17 @@ class Login extends Component {
         this.redirect();
 
     }
+    componentWillMount(){
+        axios.get('/api/logginCheck').then((results) => {
+
+            console.log(typeof(results.data))
+
+            if (results.data.IS_LOGGED_IN){
+                console.log(results);
+                this.props.setLoggedIn(results.data.IS_LOGGED_IN)
+            }
+        });
+    }
     showError(){
         $('#login-error').removeClass('login-error');
     }
