@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import {NavLink, withRouter} from 'react-router-dom';
 import $ from 'jquery';
 import axios from 'axios';
-// import {connect} from 'react-redux';
-// import LoginStatus from './../reducers/reducer_set_logged_in.js';
 
-// const loggedIn = false;
+
+
 class Header extends Component {
     constructor(props){
         super(props);
@@ -14,9 +13,6 @@ class Header extends Component {
             isLoggedIn: this.props.loggedIn,
             username:''
         }
-        // console.log(this.props);
-        // this.setLoggedIn = this.setLoggedIn.bind(this);
-        // console.log('Header state: ' + this.state.isLoggedIn);
     }
     componentWillMount(){
         axios.get('/api/logginCheck').then((results) => {
