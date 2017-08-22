@@ -2,7 +2,7 @@
 
 include __DIR__ . "../bootstrap.php";
 
-$ad = Ad::find(Auth::id());
+$ad = Ad::find($_REQUEST['id']);
 
 if ($ad) {
 	delete($ad['id']);
