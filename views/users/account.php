@@ -24,6 +24,7 @@ foreach($ads as $ad) {
 }
 
 $data['state'] = true;
-print(json_encode($data));
-print(json_encode($results));
+$arr = ['data' => $data, 'results' => $results];
+
+print(json_encode($arr));
  ?>

@@ -54,13 +54,13 @@ class AdContainer extends Component {
         
     }
     render(){
-        console.log(this.state.data)
-        console.log('rendered!')
+        // console.log(this.state.data)
+        // console.log('rendered!')
         let sectionTitle = '';
         let i = -1;
         const Ads = this.state.data.map((ad) => {
             i++;
-            console.log(ad);
+            // console.log(ad);
             return (
                 <Ad
                 id={'ad' + i }

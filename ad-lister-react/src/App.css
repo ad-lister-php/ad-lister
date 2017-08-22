@@ -91,6 +91,7 @@
     position: relative;
     padding-top: 2vh; }
     .ad-container .flex-footer span {
+      cursor: pointer;
       text-align: center;
       width: 50px;
       font-size: 1.5em; }

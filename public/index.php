@@ -38,6 +38,10 @@ function pageController()
             header('Content-Type: application/json');
             require_once 'logout.php';
             die();
+        case '/api/logginCheck':
+            header('Content-Type: application/json');
+            require_once '../views/users/user-session.php';
+            die();
         default:    // displays 404 if route not specified above
             $mainView = '../views/home.php';
             break;

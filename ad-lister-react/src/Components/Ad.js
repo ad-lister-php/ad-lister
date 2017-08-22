@@ -5,7 +5,7 @@ import $ from 'jquery'
 const Ad = (props) =>{
 	let img = '';
 	let price = '';
-
+	let id = '#' + props.id;
 	if (!props.img) {
 		img = DefaultAd;
 	} else {
@@ -25,8 +25,12 @@ const Ad = (props) =>{
 	            <p>{props.desc}</p>
 	            <span
 	            onClick={
-	            	(e) => {
-	            		e.target.id
+	            	function () {
+	            		$(this).animate({
+	            			opacity: 0
+	            		}, 400, function(){
+	            			console.log('done');
+	            		});
 	            	}
 	            }
 	            id='ad-expand' className='v-align glyphicon glyphicon-resize-full' />
