@@ -1,7 +1,6 @@
  <?php
 //Actually Page Controller
 header('Access-Control-Allow-Origin: *');
-require_once __DIR__ . '/../utils/helper_functions.php';
 
 function pageController()
 {
@@ -15,10 +14,7 @@ function pageController()
     // switch that will run functions and setup variables dependent on what route was accessed
     switch ($request) {
         // TODO: put routes here
-        case '/api/check':
-            header('Content-Type: application/json');
-            echo json_encode(['key' => 'value']);
-            die();
+
         case '/api/login':
 
             header('Content-Type: application/json');
@@ -39,7 +35,7 @@ function pageController()
 			require_once '../views/users/account.php';
 			die();
         case '/api/logout':
-            // header('Content-Type: application/json');
+            header('Content-Type: application/json');
             require_once 'logout.php';
             die();
         default:    // displays 404 if route not specified above

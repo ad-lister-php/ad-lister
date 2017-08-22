@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . "./../../models/Ad.php";
+include './../../bootsrap.php';
 
 $ads = Ad::displayAll();
 

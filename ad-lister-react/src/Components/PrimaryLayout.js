@@ -32,7 +32,8 @@ class PrimaryLayout extends Component {
         console.log(this.state)
     }
     logOut(){
-        axios.get('/api/logout').then(() => {
+        axios.get('/api/logout').then((results) => {
+            console.log(results);
             this.setState({
                 loggedIn: false
             });
@@ -42,8 +43,8 @@ class PrimaryLayout extends Component {
     render() {
         return (
             <div>
-                <Header 
-                isLoggedIn={this.state} 
+                <Header
+                isLoggedIn={this.state}
                 logOut={this.logOut}/>
                 <main className='main'>
                 <Switch>
@@ -61,6 +62,6 @@ class PrimaryLayout extends Component {
 //     return {
 //         type: SET_LOGGED_IN,
 //         username
-//     }    
+//     }
 // }
 export default PrimaryLayout;
