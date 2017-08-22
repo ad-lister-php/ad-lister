@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import DefaultAd from './../img/default-ad.jpeg';
 import ReactFilestack from 'filestack-react';
 import $ from 'jquery';
+import axios from 'axios';
 
 
 const fileStackURL = 'https://cdn.filestackcontent.com/';
@@ -16,6 +17,7 @@ class CreateAnAd extends Component {
 
 
         this.state = {
+        	imageKey: '',
             handle: DefaultAd,
             fileStackOptions: fileStackOptions,
             apikey: 'Arm3f7HJReOkjrR25yPiwz',
@@ -26,8 +28,10 @@ class CreateAnAd extends Component {
     onSuccess(results) {
         console.log('setting url...')
         console.log(results);
+        let imageKey = results.filesUploaded[0].handle;
         let handle = fileStackURL + results.filesUploaded[0].handle;
         this.setState({
+        	imageKey: imageKey,
             handle: handle
         })
         console.log(this.state.handle);
@@ -59,13 +63,21 @@ class CreateAnAd extends Component {
 					<button 
 					onClick={
 						() => {
-							console.log({
-								name: $('#ad-form-name').val(),
-								desc: $('#ad-form-desc').val()
-							});
+
+						axios.get('/api/createAd', {
+							params: {
+								seller: '',
+								title: '',
+								desc: '',
+								location: '',
+								image: ''
+							}
+						})
+
 							$('.loading-target').toggleClass('display-none');
+							}
 						}
-					}
+					
 					className='btn btn-success'>Submit</button>
 					<button 
 					onClick={

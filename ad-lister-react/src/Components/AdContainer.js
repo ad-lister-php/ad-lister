@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Ad from './Ad';
+import SelectedAd from './SelectedAd';
 import axios from 'axios';
 
 const adsArr = [
@@ -37,12 +38,16 @@ class AdContainer extends Component {
             data: []
         }
         // const adsArr = this.state.data;
+        
     }
     componentWillMount(){
         if (this.props.profile == 'loggedIn') {
             axios.get('/api/profile').then((results) => {
                 console.log(results);
-            })
+                this.setState({
+                    data: results.data
+                }) 
+            });
         } else {
             axios.get('/api/all-ads').then((results) => {
                 console.log('request done!')
@@ -60,9 +65,11 @@ class AdContainer extends Component {
         let i = -1;
         const Ads = this.state.data.map((ad) => {
             i++;
-            // console.log(ad);
+            console.log(ad);
             return (
                 <Ad
+                key={ad.id}
+                sql-id={ad.id}
                 id={'ad' + i }
                 name={ad.title}
                 price={ad.price}
@@ -74,7 +81,7 @@ class AdContainer extends Component {
         if (!this.props.username) {
             sectionTitle = 'Public'
         } else {
-            sectionTitle = this.props.username;
+            sectionTitle = this.props.username + "'s";
         }
         return (
             <div className='ad-container container-fluid'>

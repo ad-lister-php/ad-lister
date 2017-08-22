@@ -66,9 +66,27 @@ class Header extends Component {
     {/*=============Search form================*/}
                             <form className="navbar-form navbar-right">
                                 <div className="form-group input-group">
-                                    <input type="text" className="form-control" placeholder="Search Postings" />
-                                    <span className='input-group-btn'>
-                                        <button type="submit" className="btn btn-default">Search</button>
+                                    <input 
+                                    onClick={
+                                        (e) => {
+                                            e.preventDefault();
+                                        }
+                                    }
+                                    type="text" className="form-control" placeholder="Search Postings" />
+                                    <span 
+                                    onClick={
+                                        (e) => {
+                                            e.preventDefault();
+                                        }
+                                    }
+                                    className='input-group-btn'>
+                                        <button
+                                        onClick={
+                                            (e) => {
+                                                e.preventDefault();
+                                            }
+                                        }
+                                        className="btn btn-default">Search</button>
                                     </span>
                                 </div>
                             </form>

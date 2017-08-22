@@ -135,8 +135,10 @@
   width: 80%; }
 
 .selected-ad {
-  width: 100%;
-  position: relative; }
+  opacity: 0; }
+
+.display-none {
+  visibility: hidden; }
 
 @media screen and (max-width: 768px) {
   #create-ad {
@@ -145,9 +147,6 @@
     width: 100%;
     height: 100vh;
     left: 0vw; } }
-
-.display-none {
-  visibility: hidden; }
 
 .glyphicon.spinning {
   font-size: 3em;

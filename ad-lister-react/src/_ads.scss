@@ -86,8 +86,10 @@ $border: 10px solid #222;
 	width: 80%;
 }
 .selected-ad {
-	width: 100%;
-	position: relative;
+	opacity: 0;
+}
+.display-none{
+	visibility:hidden
 }
 @media screen and (max-width: 768px) {
 	#create-ad{
@@ -98,9 +100,7 @@ $border: 10px solid #222;
 		left: 0vw;
 	}
 }
-.display-none{
-	visibility:hidden
-}
+
 .glyphicon.spinning {
 	font-size: 3em;
     animation: spin 1s infinite linear;
