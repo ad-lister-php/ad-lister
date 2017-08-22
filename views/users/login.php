@@ -1,13 +1,13 @@
 <?php
-require_once '../utils/Auth.php';
-session_start();
+// require_once '../utils/Auth.php';
+// session_start();
+include './../bootstrap.php';
 
-
-// if (Auth::check()) {
-//     $data['state'] = 'error already logged in';
-//     print(json_encode($data));
-//     die();
-// }
+if (Auth::check()) {
+    $data['state'] = 'error already logged in';
+    print(json_encode($data));
+    die();
+}
 
 
     $username = User::escape($_REQUEST['username']);
