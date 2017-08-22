@@ -1,6 +1,6 @@
 <?php
 require_once '../utils/Auth.php';
-// session_start();
+session_start();
 
 
 // if (Auth::check()) {

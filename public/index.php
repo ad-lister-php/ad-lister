@@ -5,7 +5,7 @@ require_once __DIR__ . '/../utils/helper_functions.php';
 
 function pageController()
 {
-    session_start();
+
     // defines array to be returned and extracted for view
     $data = [];
 
@@ -35,7 +35,7 @@ function pageController()
             require_once '../new_user_requests/new_user.php';
             die();
         case '/api/logout':
-            header('Content-Type: application/json');
+            // header('Content-Type: application/json');
             require_once 'logout.php';
             die();
         default:    // displays 404 if route not specified above
