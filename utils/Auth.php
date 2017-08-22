@@ -29,7 +29,7 @@ class Auth
 
         // makes sure the instance returned is not empty
         if ($user == null) {
-            $_SESSION['ERROR_MESSAGE'] = 'Login information was incorrect';
+            $_SESSION['ERROR_MESSAGE'] = 'Login information was incorrects';
 			Log::error("Failed login attempt");
             return false;
         }
