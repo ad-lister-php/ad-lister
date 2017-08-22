@@ -1,11 +1,11 @@
 <?php
 
-require_once __DIR__ . "../models/Ad.php";
+include __DIR__ . "../bootstrap.php";
 
-$ad = Ad::find($this->id);
+$ad = Ad::find(Auth::id());
 
 if ($ad) {
-	delete($this->id);
+	delete($ad['id']);
 	$successful['success'] = true;
 }
 else {
