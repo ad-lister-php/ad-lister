@@ -4,22 +4,30 @@ import DefaultAd from './../img/default-ad.jpeg';
 import $ from 'jquery'
 import {Route} from 'react-router';
 import DeleteButton from './DeleteButton';
+import axios from 'axios';
 
 class Ad extends Component{
 	constructor(props){
 		super(props);
 
 		this.state = {
-			width: '',
-			height:''
+			deleteStateChanger: 0
 		}
 		this.delete = this.delete.bind(this);
+		console.log(this.props.sql)
 	}
 
 	delete(props){
 		let confirmation = window.confirm('Are you sure you want to delete this ad?');
 		if(confirmation){
-			console.log(this.props);
+			axios.get('/api/delete',{
+				params: {
+					id: this.props.sql
+				}
+			}).then((results) =>{
+				console.log(results)
+				this.forceUpdate();
+			})
 		}
 
 	}
@@ -51,7 +59,7 @@ class Ad extends Component{
 		            onClick={
 		            	() => {
 
-							console.log(findDOMNode(this));
+							
 
 		            	}
 		            }

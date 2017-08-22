@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . "../bootstrap.php";
+include "./../bootstrap.php";
 
 $ad = Ad::find($_REQUEST['id']);
 
@@ -12,6 +12,6 @@ else {
 	$successful['success'] = false;
 }
 
-print(json_encode($succesful));
+print(json_encode($successful));
 
 ?>
