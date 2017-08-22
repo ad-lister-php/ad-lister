@@ -1,6 +1,6 @@
 <?php
 
-include './../../bootsrap.php';
+include './../bootstrap.php';
 
 $ads = Ad::displayAll();
 
