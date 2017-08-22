@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import $ from 'jquery';
 // import {connect} from 'react-redux';
 // import LoginStatus from './../reducers/reducer_set_logged_in.js';
@@ -17,8 +17,14 @@ class Header extends Component {
         // this.setLoggedIn = this.setLoggedIn.bind(this);
         console.log('Header state: ' + this.state.isLoggedIn);
     }
+    redirect(path){
+        if (this.props.username != '') {
+            this.props.history.push(path);
+        }
+    }
     render() {
-    if (!this.props.isLoggedIn){
+        console.log(this.props.isLoggedIn);
+    if (!this.props.isLoggedIn.loggedIn){
         return (
             <div>
             <nav className='navbar navbar-default'>
@@ -103,7 +109,10 @@ class Header extends Component {
                         <div className='navbar-right'>
                         <NavLink to='/profile' exact activeClassName='active'><p className='navbar-text'>Profile</p></NavLink>
                         <p 
-                        onClick={() => {this.props.logOut()}}
+                        onClick={() => {
+                            this.props.logOut()
+                            this.redirect('/')
+                        }}
                         className='navbar-text'>Logout</p>
                         </div>
                     </div>
@@ -114,4 +123,4 @@ class Header extends Component {
         }
     }
 }
-export default Header;
+export default withRouter(Header);

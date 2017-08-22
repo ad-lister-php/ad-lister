@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink, withRouter} from 'react-router-dom';
 import ReactFilestack from 'filestack-react';
 import defaultProfilePic from './../img/download.jpeg';
 import $ from 'jquery';
 import axios from 'axios';
+// import Router from 'react-router-dom';
 
 const fileStackURL = 'https://cdn.filestackcontent.com/';
 const apikey = 'Arm3f7HJReOkjrR25yPiwz';
@@ -17,19 +18,28 @@ class Register extends Component{
 
         this.state = {
             handle: defaultProfilePic,
+            imageKey: '',
             fileStackOptions: fileStackOptions,
             apikey: 'Arm3f7HJReOkjrR25yPiwz',
             fileStackURL: 'https://cdn.filestackcontent.com/'
         }
         this.onSuccess = this.onSuccess.bind(this);
+        console.log(this.props);
+        // this.redirect();
+    }
+
+    redirect(){
+        this.props.history.push('/profile');
     }
 
     onSuccess(results) {
         console.log('setting url...')
         console.log(results);
+        let imageKey = results.filesUploaded[0].handle;
         let handle = fileStackURL + results.filesUploaded[0].handle;
         this.setState({
-            handle: handle
+            handle: handle,
+            imageKey: imageKey
         })
         console.log(this.state.handle);
     }
@@ -67,15 +77,20 @@ class Register extends Component{
                                             let user = $('#username').val();
                                             let pass = $('#password').val();
                                             let email = $('#email').val();
+                                            let image = this.state.handle;
                                             axios.post('/api/register', {withCredentials:true}, {
                                                 params:{
                                                     name: name,
                                                     username: user,
                                                     password: pass,
-                                                    email: email
+                                                    email: email,
+                                                    image: image
                                                 }
                                             }).then((results)=>{
                                                 console.log(results);
+                                                if (results.data.success){
+                                                    this.redirect();
+                                                }
                                             });
 
 
@@ -83,7 +98,7 @@ class Register extends Component{
                                     }
                                     className='form-control btn btn-primary'
                                     type='submit'>Register</button>
-                                    <p className='text-center'>Not new? login <Link to='/users/login' exact activeClassName='active'>Here</Link></p>
+                                    <p className='text-center'>Not new? login <NavLink to='/users/login' exact activeClassName='active'>Here</NavLink></p>
                                 </div>
                             </form>
                         </div>
@@ -93,4 +108,4 @@ class Register extends Component{
     }
 }
 
-export default Register;
+export default withRouter(Register);

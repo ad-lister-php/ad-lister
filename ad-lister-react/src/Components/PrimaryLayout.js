@@ -49,7 +49,7 @@ class PrimaryLayout extends Component {
                 <Switch>
                     <Route path='/' exact component={Main} />
                     <Route path='/profile' component={() => (<ProfilePage username={this.state.username} />)} />
-                    <Route path='/users' component={() => (<LogRegPage setLoggedIn={this.setLoggedIn}/>)} />
+                    <Route path='/users' component={() => (<LogRegPage username={this.state.username} setLoggedIn={this.setLoggedIn}/>)} />
                     <Route component={NotFound}/>
                 </Switch>
                 </main>

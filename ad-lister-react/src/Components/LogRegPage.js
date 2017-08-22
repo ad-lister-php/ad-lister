@@ -8,8 +8,8 @@ const LogRegPage = (props) => {
 	return (
 		<div>
 			<Switch>
-				<Route path='/users/login' component={() => (<Login setLoggedIn={props.setLoggedIn} />)} />
-				<Route path='/users/register'component={Register} />
+				<Route path='/users/login' component={() => (<Login username={props.username} setLoggedIn={props.setLoggedIn} />)} />
+				<Route path='/users/register'component={() => (<Register username={props.username} setLoggedIn={props.setLoggedIn} />)} />
 				<Route component={NotFound}/>
 			</Switch>
 		</div>
