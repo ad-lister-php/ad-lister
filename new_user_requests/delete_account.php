@@ -8,10 +8,10 @@ if ($user) {
 	$ads = Ad:all();
 	foreach ($ads as $ad) {
 		if ($user->username == $ad['seller']) {
-			$ad->delete();
+			Ad::delete($ad['id']);
 		}
 	}
-	$user->delete();
+	User::delete($user->id);
 	$successful['success'] = true;
 }
 else {
