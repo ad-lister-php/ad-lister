@@ -15,9 +15,13 @@ class Login extends Component {
         }
         console.log(props);
         this.redirect();
+
+    }
+    showError(){
+        $('#login-error').removeClass('login-error');
     }
     redirect(){
-        if (this.props.username != '') {
+        if (this.props.username !== '') {
             this.props.history.push('/profile');
         }
     }
@@ -29,6 +33,9 @@ class Login extends Component {
                 <div className='login-container'>
                     <div className='form-container'>
                         <h1>Login:</h1>
+                        <div>
+                            <p id='login-error' className='error login-error'>* Invalid Username or Password</p>
+                        </div>
                         <form method='POST'>
                             <div className='form-group input-group-lg'>
                                 <input id ='username'className='form-control' type='text' name='username'placeholder='Username'  />
@@ -49,6 +56,8 @@ class Login extends Component {
                                             if (results.data.username) {
                                                 this.props.setLoggedIn(results.data.username);
 
+                                            } else {
+                                                this.showError();
                                             }
                                         });
                                     }

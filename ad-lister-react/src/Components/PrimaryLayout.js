@@ -35,7 +35,8 @@ class PrimaryLayout extends Component {
         axios.get('/api/logout').then((results) => {
             console.log(results);
             this.setState({
-                loggedIn: false
+                loggedIn: false,
+                username: ''
             });
         })
     }

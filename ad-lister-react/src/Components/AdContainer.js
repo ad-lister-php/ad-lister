@@ -39,12 +39,18 @@ class AdContainer extends Component {
         // const adsArr = this.state.data;
     }
     componentWillMount(){
-        axios.get('/api/all-ads').then((results) => {
-            console.log('request done!')
-            this.setState({
-                data: results.data
+        if (this.props.profile == 'loggedIn') {
+            axios.get('/api/profile').then((results) => {
+                console.log(results);
             })
-        })
+        } else {
+            axios.get('/api/all-ads').then((results) => {
+                console.log('request done!')
+                this.setState({
+                    data: results.data
+                })
+            })   
+        }
         
     }
     render(){

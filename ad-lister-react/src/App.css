@@ -38,6 +38,13 @@
   .filestack-container .filestack-button {
     width: 100%; }
 
+.login-error {
+  display: none; }
+
+.error {
+  text-align: center;
+  color: red; }
+
 @media screen and (max-width: 768px) {
   .login-container {
     border-radius: 0;
