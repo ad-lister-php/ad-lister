@@ -43,10 +43,10 @@ class Register extends Component{
         let handle = fileStackURL + results.filesUploaded[0].handle;
         this.setState({
             imageKey: imageKey,
-            handle: handle,
-            imageKey: imageKey
+            handle: handle
+            // imageKey: imageKey
         })
-        console.log(this.state.handle);
+        // console.log(this.state.handle);
     }
     render(){
 
@@ -99,10 +99,10 @@ class Register extends Component{
                                                     image = 'default';
                                                 }
 
-                                                if (name == '' ||
-                                                    user == '' ||
-                                                    pass == '' ||
-                                                    email == '') {
+                                                if (name === '' ||
+                                                    user === '' ||
+                                                    pass === '' ||
+                                                    email === '') {
 
                                                     $('#register-error').removeClass('login-error');
 
@@ -122,7 +122,7 @@ class Register extends Component{
                                                     }
                                                 }).then((results)=>{
                                                     console.log(results);
-                                                    if (results.data.success == true){
+                                                    if (results.data.success === true){
                                                         this.redirectNewUser();
                                                     }
                                                 });

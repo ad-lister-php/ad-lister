@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import DefaultAd from './../img/default-ad.jpeg';
 import ReactFilestack from 'filestack-react';
 import $ from 'jquery';
@@ -24,6 +25,7 @@ class CreateAnAd extends Component {
             fileStackURL: 'https://cdn.filestackcontent.com/'
         }
         this.onSuccess = this.onSuccess.bind(this);
+        console.log(props);
 	}
     onSuccess(results) {
         console.log('setting url...')
@@ -36,14 +38,21 @@ class CreateAnAd extends Component {
         })
         console.log(this.state.handle);
     }
-	render(){
+	render(props){
+		let adImage = ''
+		if(!this.state.imageKey) {
+			adImage = DefaultAd;
+		} else {
+			adImage = this.state.handle
+		}
+
 		return(
 			<div id='create-ad'>
 				<div className='loading-target display-none'>
 					<span className='glyphicon glyphicon-refresh spinning'></span>
 				</div>
-				<div className='ad-image-container'>
-					<img id='ad-form-image' alt='ad' className='ad-image' src={DefaultAd} />
+				
+					<img id='ad-form-image' alt='ad' className='ad-image img-responsive' src={adImage} />
 	                <ReactFilestack
 	                  apikey={apikey}
 	                  buttonText="Add an Image"
@@ -51,47 +60,54 @@ class CreateAnAd extends Component {
 	                  options={this.state.fileStackOptions}
 	                  onSuccess={this.onSuccess}
 	                />
-				</div>
+
 
 				<div className='ad-form'>
 					<form className="form-group-lg">
 						<input id='ad-form-name' type='text' placeholder='Name for the Listing' className='form-control' />
-						<textarea id='ad-form-desc' className='form-control' placeholder='test'></textarea>
+						<input id='ad-form-price' type='number' placeholder='Price in USD' className='form-control' />
+						<textarea id='ad-form-desc' className='form-control' placeholder='Description'></textarea>
 					</form>
 				</div>
 				<div>
-					<button 
-					onClick={
-						() => {
+					<div className='buttons'>
+						<button 
+						onClick={
+								() => {
+								$('.loading-target').toggleClass('display-none');
+								
+								axios.get('/api/createAd', {
+									params: {
+										seller: this.props.username,
+										title: $('#ad-form-name').val(),
+										price: $('#ad-form-price').val(),
+										desc: $('#ad-form-desc').val(),
+										location: '',
+										image: this.state.imageKey
+									}
+								}).then((results) => {
+									this.props.history.push('/profile');
+								})
 
-						axios.get('/api/createAd', {
-							params: {
-								seller: '',
-								title: '',
-								desc: '',
-								location: '',
-								image: ''
+
+								}
 							}
-						})
+						
+						className='btn btn-success'>Submit</button>
+						<button 
+						onClick={
+							() => {
+								$('#create-ad').fadeToggle(200);
+								$('.ad-container').toggleClass('opacity');
 
-							$('.loading-target').toggleClass('display-none');
 							}
 						}
-					
-					className='btn btn-success'>Submit</button>
-					<button 
-					onClick={
-						() => {
-							$('#create-ad').fadeToggle(200);
-							$('.ad-container').toggleClass('opacity');
-
-						}
-					}
-					className='btn btn-danger'>Cancel</button>
+						className='btn btn-danger'>Cancel</button>
+					</div>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default CreateAnAd;
+export default withRouter(CreateAnAd);

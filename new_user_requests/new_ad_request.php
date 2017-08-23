@@ -1,6 +1,7 @@
 <?php
 	include './../bootstrap.php';
     $ad = new Ad;
+    $ad->image = Model::escape($_REQUEST['image']);
     $ad->seller = Model::escape($_REQUEST['seller']);
     $ad->title = Model::escape($_REQUEST['title']);
     $ad->price = Model::escape($_REQUEST['price']);
@@ -17,7 +18,7 @@
         $successful['success'] = false;
     }
 
-    print(json_encode($successful));
+    print(json_encode($_REQUEST));
 
 
  ?>
