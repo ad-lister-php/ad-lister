@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
 // import Login from './Login';
@@ -28,7 +28,7 @@ class PrimaryLayout extends Component {
     }
 
     search(search){
-        console.log('SEARCH SUCCESSFUL?');
+        this.props.history.push('/');
         axios.get('/api/search', {
             params: {
                 value: search
@@ -45,7 +45,6 @@ class PrimaryLayout extends Component {
             loggedIn: true,
             username: username
         })
-        console.log(this.state)
     }
     logOut(){
         axios.get('/api/logout').then((results) => {
@@ -77,10 +76,5 @@ class PrimaryLayout extends Component {
         )
     }
 }
-// function setLoggedIn(username) {
-//     return {
-//         type: SET_LOGGED_IN,
-//         username
-//     }
-// }
-export default PrimaryLayout;
+
+export default withRouter(PrimaryLayout);

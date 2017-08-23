@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import axios from 'axios';
+
 import AdContainer from './AdContainer';
 import ProfileDash from './ProfileDash';
 
@@ -13,14 +13,15 @@ class ProfilePage extends Component{
 		this.redirect();
 	}
 	redirect(){
-		if (this.props.username == '') {
+		if (this.props.username === '') {
 			this.props.history.push('/');
 		}
 	}
 	render(){
 		return (
 			<div>
-				<ProfileDash />
+				<ProfileDash 
+				username={this.props.username} />
 				<AdContainer
 				profile={'loggedIn'}
 				username={this.props.username}

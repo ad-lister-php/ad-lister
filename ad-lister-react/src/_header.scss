@@ -5,6 +5,11 @@ $navbar-color: #222;
     position: fixed;
     z-index: 25;
     width: 100%;
+    
+    .small{
+        color: #888;
+    }
+
     .navbar-brand {
     	color: white;
     }

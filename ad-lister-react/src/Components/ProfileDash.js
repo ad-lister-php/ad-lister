@@ -3,7 +3,8 @@ import CreateAnAd from './CreateAnAd';
 import $ from 'jquery';
 
 
-const ProfileDash = () => {
+const ProfileDash = (props) => {
+	console.log(props);
 	return (
 		<div>
 			<div className='profile-dash text-center'>
@@ -17,7 +18,8 @@ const ProfileDash = () => {
 				}
 				className='btn btn-danger'>Create an Ad</p>
 			</div>
-			<CreateAnAd />
+			<CreateAnAd
+			username={props.username} />
 		</div>
 	);
 }

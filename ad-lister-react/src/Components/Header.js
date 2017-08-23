@@ -10,14 +10,16 @@ class Header extends Component {
         super(props);
 
         this.state = {
+            search: '',
             isLoggedIn: this.props.loggedIn,
             username:''
         }
+        
     }
     componentWillMount(){
         axios.get('/api/logginCheck').then((results) => {
 
-            console.log(typeof(results.data))
+            
 
             if (results.data.IS_LOGGED_IN){
                 console.log(results);
@@ -29,19 +31,18 @@ class Header extends Component {
 
     }
     redirect(path){
-        if (this.props.username != '') {
+        if (this.props.username !== '') {
             this.props.history.push(path);
         }
     }
     render() {
-        console.log(this.props.isLoggedIn);
     if (!this.props.isLoggedIn.loggedIn){
         return (
             <div>
             <nav className='navbar navbar-default'>
                 <div className='container-fluid'>
                         <div className='navbar-header'>
-                            <p className='navbar-brand'>Ad-Lister</p>
+                            <p className='navbar-brand'>Community</p>
                             <button
                             onClick={
                                 ()=>{
@@ -59,9 +60,7 @@ class Header extends Component {
                             </button>
                         </div>
                     <div id='navbar-container' className='collapse navbar-collapse'>
-                        <div className='navbar-left'>
-                            <NavLink className='navbar-left btn btn-primary navbar-btn' to='/' exact activeClassName='active'>Home</NavLink>
-                        </div>
+
                         <div>
     {/*=============Search form================*/}
                             <form method='GET'  
@@ -86,7 +85,11 @@ class Header extends Component {
                                             (e) => {
                                                 e.preventDefault();
                                                 let search = $('#searchbar').val();
-                                                this.props.search(search);
+
+                                                this.setState({
+                                                    search: search
+                                                })
+                                                this.props.search(this.state.search);
                                             }
                                         }
                                         className="btn btn-default">Search</span>
@@ -95,6 +98,7 @@ class Header extends Component {
                             </form>
                         </div>
                         <div className='navbar-right'>
+                            <NavLink className='navbar-left navbar-text' to='/' exact activeClassName='active'>Home</NavLink>
                             <NavLink className='navbar-text' to='/users/register' exact activeClassName='active'><p>Register</p></NavLink>
                             <NavLink className='navbar-text' to='/users/login' exact activeClassName='active'><p>Login</p></NavLink>
                         </div>
@@ -108,7 +112,7 @@ class Header extends Component {
             <nav className='navbar navbar-default'>
                 <div className='container-fluid'>
                         <div className='navbar-header'>
-                            <p className='navbar-brand'>Ad-Lister</p>
+                            <p id='brand' className='navbar-brand'>Community <small className='small'>Your Local Listings</small></p>
                             <button
                             onClick={
                                 ()=>{
@@ -127,19 +131,40 @@ class Header extends Component {
                     <div id='navbar-container' className='collapse navbar-collapse'>
                         <div>
     {/*=============Search form================*/}
-                            <form className="navbar-form navbar-right">
+                            <form method='GET'  
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                let search = $('#searchbar').val();
+                                this.props.search(search);
+                            }}
+                            className="navbar-form navbar-right">
                                 <div className="form-group input-group">
-                                    <input type="text" className="form-control" placeholder="Search Postings" />
-                                    <span className='input-group-btn'>
-                                        <button type="submit" className="btn btn-default">Search</button>
+
+                                    <input
+                                    id='searchbar'
+                                    name='value'
+                                    type="text" className="form-control" placeholder="Search Postings" />
+
+                                    <span 
+                                    className='input-group-btn'>
+
+                                        <span
+                                        onClick={
+                                            (e) => {
+                                                e.preventDefault();
+                                                let search = $('#searchbar').val();
+
+
+                                                this.props.search(search);
+                                            }
+                                        }
+                                        className="btn btn-default">Search</span>
                                     </span>
                                 </div>
                             </form>
                         </div>
-                        <div className='navbar-left'>
-                            <NavLink className='navbar-left btn btn-primary navbar-btn' to='/' exact activeClassName='active'>Home</NavLink>
-                        </div>
                         <div className='navbar-right'>
+                        <NavLink className='navbar-left navbar-text' to='/' exact activeClassName='active'>Home</NavLink>
                         <NavLink to='/profile' exact activeClassName='active'><p className='navbar-text'>Profile</p></NavLink>
                         <p 
                         onClick={() => {

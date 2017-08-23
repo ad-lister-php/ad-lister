@@ -62,6 +62,8 @@
   position: fixed;
   z-index: 25;
   width: 100%; }
+  .navbar .small {
+    color: #888; }
   .navbar .navbar-brand {
     color: white; }
   .navbar .navbar-text {
@@ -71,7 +73,7 @@
       cursor: pointer; }
 
 .ad {
-  min-height: 400px;
+  min-height: 450px;
   background-color: #FFF;
   box-sizing: border-box;
   border: 5px solid #222;
@@ -83,6 +85,7 @@
   z-index: 0; }
   .ad-container .flex-title, .ad-container .flex-footer {
     position: relative;
+    bottom: 10px;
     display: flex;
     justify-content: space-between; }
     .ad-container .flex-title h3, .ad-container .flex-footer h3 {
@@ -102,7 +105,7 @@
 #create-ad {
   width: 100%; }
   #create-ad img {
-    width: 100% !important; }
+    width: 75% !important; }
 
 .ad-image {
   margin: 0 auto;
@@ -129,6 +132,15 @@
   margin: 0 auto;
   background-color: white;
   padding-bottom: 25px; }
+  #create-ad .ad-image {
+    margin: 0 auto;
+    width: 75%;
+    max-height: 250px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px 0 #222; }
+  #create-ad .buttons {
+    display: flex;
+    justify-content: center; }
 
 .ad-form {
   margin: 0 auto;

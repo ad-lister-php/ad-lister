@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {findDOMNode} from 'react-dom';
+
 import DefaultAd from './../img/default-ad.jpeg';
-import $ from 'jquery'
+
 import {Route} from 'react-router';
 import DeleteButton from './DeleteButton';
 import axios from 'axios';
@@ -14,7 +14,6 @@ class Ad extends Component{
 			deleteStateChanger: 0
 		}
 		this.delete = this.delete.bind(this);
-		console.log(this.props.sql)
 	}
 
 	delete(props){
@@ -25,7 +24,6 @@ class Ad extends Component{
 					id: this.props.sql
 				}
 			}).then((results) =>{
-				console.log(results)
 				this.forceUpdate();
 			})
 		}
@@ -34,8 +32,7 @@ class Ad extends Component{
 	render(){
 		let img = '';
 		let price = '';
-		let id = '#' + this.props.id;
-		console.log(id);
+		
 		if (!this.props.img) {
 			img = DefaultAd;
 		} else {
@@ -54,16 +51,7 @@ class Ad extends Component{
 
 	        <Route path='/profile' component={() => (<DeleteButton delete={this.delete} />)} />
 	            <div className='flex-footer'>
-		            <p>{this.props.desc}</p>
-		            <span
-		            onClick={
-		            	() => {
-
-							
-
-		            	}
-		            }
-		            id='ad-expand' className='v-align glyphicon glyphicon-resize-full' />
+		            <p>{this.props.seller}</p>
 	            </div>
 	            <img 
 	            alt='ad' className='img-responsive ad-image' src={img} />
@@ -71,6 +59,7 @@ class Ad extends Component{
 		            <h3>{this.props.name}</h3>
 		            <h3>${price}</h3>
 	            </div>
+		            <p>{this.props.desc}</p>
 	        </div>
 	    );
 	}
